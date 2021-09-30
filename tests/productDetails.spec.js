@@ -51,7 +51,7 @@ describe('6 - Implemente os casos de teste para a função `productDetails`', ()
     ).toBe(true);
     // Teste se os dois productIds terminam com 123.
     productDetails('Alcool gel', 'Máscara').forEach((productId) => {
-      expect(productId.details.productId).toContain('123')})
-    
+      expect(productId.details.productId).toContain('123');
+    });
   });
 });
