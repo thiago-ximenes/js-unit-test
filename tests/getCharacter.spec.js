@@ -71,7 +71,12 @@ describe('9 - Implemente os casos de teste da função `getCharacter`', () => {
       ],
     });
     // Teste se os parâmetros não são Case Sensitive.
-    
+    expect(getCharacter('ARYA')).toEqual({
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.'],
+    })
     // Teste se ao passar um nome que não está na tabela, a função retorna undefined.
+    expect(getCharacter('andré')).toBeUndefined();
   });
 });
