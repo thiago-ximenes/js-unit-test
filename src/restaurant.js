@@ -88,30 +88,28 @@
 //     return consumption;
 // };
 
-const createMenu = (objeto) => ({
-  fetchMenu: () => objeto,
-  order: (request) => {
-    if (request) {
-      let ordered = [];
-      ordered.push(request);
-      return ordered;
-    }
-  },
-  consumption: () => {
-    let request = createMenu().order();
-    let consumption = [];
-    if (request) {
-      consumption.push(request);
-    }
-    return consumption;
-  },
-});
+const restaurant = { fetchMenu: '', consumption: [] };
+const addConsumption = (request) => {
+  if (request) {
+    restaurant.consumption.push(request);
+  }
+  return restaurant;
+};
+
+const createMenu = (objeto) => {
+  restaurant.fetchMenu = () => objeto;
+  restaurant.order = (string) => addConsumption(string);
+  return restaurant;
+};
+
+// createMenu().order('coxinha');
+// createMenu().order('empada');
 
 console.log(
   createMenu({
     food: { coxinha: 3.9, sopa: 9.9 },
     drink: { agua: 3.9, cerveja: 6.9 },
-  }).order(),
+  }).consumption,
 );
 
 module.exports = createMenu;
