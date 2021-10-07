@@ -96,20 +96,21 @@ const addConsumption = (request) => {
   return restaurant;
 };
 
-const createMenu = (objeto) => {
-  restaurant.fetchMenu = () => objeto;
+const createMenu = (object) => {
+  restaurant.fetchMenu = () => object;
   restaurant.order = (string) => addConsumption(string);
+  restaurant.pay = () => {
+    let sum = 0;
+    restaurant.consumption.forEach((item) => {
+      if (item in object.food) {
+        sum += object.food[item];
+      } else {
+        sum += object.drink[item];
+      }
+    });
+    return sum;
+  };
   return restaurant;
 };
-
-// createMenu().order('coxinha');
-// createMenu().order('empada');
-
-console.log(
-  createMenu({
-    food: { coxinha: 3.9, sopa: 9.9 },
-    drink: { agua: 3.9, cerveja: 6.9 },
-  }).consumption,
-);
 
 module.exports = createMenu;
